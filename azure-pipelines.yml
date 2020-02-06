@@ -1,27 +1,19 @@
-# ASP.NET Core
-# Build and test AST.NET core projects targeting .NET croe
-# Add seps that run tests, create a NuGet package, deploy and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
 
 trigger:
 - master
 
-jobs:
-- job: Linux
-  pool:
-    vmImage: 'Ubuntu 18.04'
-  steps:
-  - task: DotNetCoreInstaller@0
-    inputs:
-      packageType: 'sdk'
-      version: '2.2.401'
-  - script: dotnet build ./SimpleCommerce.sln
-    displayName: 'dotnet build'
-  - script: /run-tests.sh
-    displayName: 'run tests'
-  - task: PublishTestResults@2
-    displayName: 'Publish Test Results **/*.trx'
-    condition: succeededOrFailed()
-    inputs:
-      testResultsFormat: VSTest
-      testResultsFiles: '**/*.trx'
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
